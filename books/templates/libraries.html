@@ -2,6 +2,6 @@
 {% load render_bundle from webpack_loader %}
 
 {% block content %}
-  <div id="libraries" data-library="{{slug}}" />
+  <div id="libraries" data-library-slug="{{slug}}" data-library-name="{{name}}" />
   {% render_bundle 'libraries' %}
 {% endblock %}

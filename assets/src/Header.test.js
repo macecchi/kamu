@@ -77,4 +77,11 @@ describe('Header', () => {
     expect(badge.exists()).toBeTruthy();
     expect(badge.props().badgeContent).toEqual(currentUser.borrowed_books_count);
   });
+
+  it('has the library name', () => {
+    const libraryName = 'Belo Horizonte';
+    const header = createComponent({ libraryName });
+
+    expect(header.find('.header-library-name').text()).toEqual(libraryName);
+  });
 });

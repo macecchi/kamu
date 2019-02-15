@@ -339,3 +339,23 @@ class IsbnViewTest(TestCase):
                              status_code=302, target_status_code=200)
         self.assertContains(response, 'Found! Go ahead, modify book template and save.')
         self.assertTemplateUsed(response, 'admin/change_form.html')
+
+
+class LibraryPageViewTwst(TestCase):
+    def setUp(self):
+        self.library = Library.objects.create(name="Belo Horizonte", slug="bh")
+        self.user = User.objects.create_user(username="claudia", is_staff=True, is_superuser=True)
+        self.user.set_password("pwd12345")
+        self.user.save()
+        self.client.force_login(user=self.user)
+
+        self.url = '/libraries/bh/'
+
+    def test_should_render_library_template_with_slug_and_name(self):
+        response = self.client.get(self.url)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'libraries.html')
+        self.assertEqual(response.context['slug'], 'bh')
+        self.assertEqual(response.context['name'], 'Belo Horizonte')
+

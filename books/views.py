@@ -5,7 +5,7 @@ from django.http import Http404
 from django.shortcuts import render, redirect
 from django.utils import timezone
 from django.utils.http import urlencode
-from django.views.generic.base import View
+from django.views.generic.base import View, TemplateView
 from filters.mixins import (
     FiltersMixin,
 )
@@ -154,3 +154,12 @@ class UserBooksView(APIView):
         return Response({
             'results': BookSerializer(books, many=True).data
         })
+
+class LibraryPageView(TemplateView):
+    template_name = "libraries.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        library = Library.objects.get(slug=context['slug'])
+        context['name'] = library.name
+        return context

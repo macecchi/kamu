@@ -30,9 +30,13 @@ export default class Header extends Component {
 		return (
 				<AppBar	className="header">
 					<Toolbar>
-						<a href={HOME_URL} className="header-content">
+						<a href={HOME_URL} className="header-logo">
 							<img src="/static/images/logo.svg" alt="Kamu logo" />
 						</a>
+
+						<div className="header-library-name">
+							{this.props.libraryName}
+						</div>
 
 						<div style={{flexGrow: 1}} />
 
@@ -68,9 +72,11 @@ export default class Header extends Component {
 }
 
 Header.propTypes = {
-	showMenu: PropTypes.bool
+	showMenu: PropTypes.bool,
+	libraryName: PropTypes.string,
 };
 
 Header.defaultProps = {
-	showMenu: true
+	showMenu: true,
+	libraryName: '',
 }

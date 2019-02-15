@@ -13,11 +13,11 @@
     margin-left: auto;
 }
 
-.header-content,
-.avatar {
-    display: flex;
-    align-items: center;
-    height: 100%;
+.header-library-name {
+    font-size: 1.5em;
+    font-weight: lighter;
+    font-style: italic;
+    color: #999999;
 }
 
 #content {
